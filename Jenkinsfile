@@ -5,7 +5,7 @@ pipeline {
         stage('vcs') {
             steps {
                 git branch: 'main',
-            url: 'https://github.com/tejachennuru1/saleor-dashboard.gitt'
+            url: 'https://github.com/tejachennuru1/saleor-dashboard.git'
             }
         }
 
