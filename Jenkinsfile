@@ -12,12 +12,12 @@ pipeline {
         stage('build') {
             steps {
                 sh 'docker image build -t tejachennuru1/saleor-dashboard:Dev .'
-
-                sh 'docker image push tejaaws/saleor-dashboard:Dev'
+                stage('push image to registry') {
+                    steps {
+                        sh 'docker image push tejaaws/saleor-dashboard:Dev'
+                    }
+                }
             }
         }
     }
 }
-
-
-
