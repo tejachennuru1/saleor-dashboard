@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'Jenkinsdocker' }
+    triggers {
+        pollSCM('* * * * *')
+    }
 
     stages {
         stage('vcs') {
@@ -13,7 +16,6 @@ pipeline {
         stage('build') {
             steps {
                 sh 'docker image build -t tejachennuru1/saleor-dashboard:Dev'
-                                
             }
         }
 }
