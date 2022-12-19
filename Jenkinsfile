@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('vcs') {
             steps {
-                git branch: 'main',
-            url: 'https://github.com/tejachennuru1/saleor-dashboard.git'
+                git branch:'main',
+                  url:'https://github.com/tejachennuru1/saleor-dashboard.git'
             }
         }
 
