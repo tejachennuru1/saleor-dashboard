@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'docker image build -t tejachennuru1/saleor-dashboard:Dev .'
 
-                sh 'docker image push tejaaws/saleor-dashboard:Dev .'
+                sh 'docker image push tejaaws/saleor-dashboard:Dev'
             }
         }
     }
