@@ -16,7 +16,7 @@ pipeline {
         }
                 stage('push image to registry') {
                     steps {
-                        sh 'docker image push tejaaws/saleor-dashboard:Dev'
+                        sh 'docker image push tejachennuru1/saleor-dashboard:Dev'
                     }
                 }
     }
