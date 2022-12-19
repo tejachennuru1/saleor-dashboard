@@ -1,7 +1,6 @@
 pipeline {
     agent any
     triggers {
-        pollSCM('* * * * *')
     }
 
     stages {
@@ -17,5 +16,5 @@ pipeline {
                 sh 'docker image build -t tejachennuru1/saleor-dashboard:Dev .'
             }
         }
-}
+    }
 }
