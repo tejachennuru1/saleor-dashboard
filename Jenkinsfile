@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Jenkinsdocker' }
+    agent any
     triggers {
         pollSCM('* * * * *')
     }
