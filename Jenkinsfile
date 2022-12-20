@@ -18,6 +18,7 @@ pipeline {
                     steps {
                         sh 'docker image tag  tejachennuru1/saleor-dashboard:Dev tejaaws/saleor-dashboard:Dev'
                         sh 'docker image push tejaaws/saleor-dashboard:Dev'
+                        sh 'docker container run -d -P tejaaws/saleor-dashboard:Dev '
                     }
                 }
     }
