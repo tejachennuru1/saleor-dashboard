@@ -5,16 +5,16 @@ pipeline {
     }
     stages {
         stage('vcs') {
-            agent 
+             
             steps {
                 git branch: 'main', url: 'https://github.com/tejachennuru1/saleor-dashboard.git'
             }
         }
 
         stage('create terraform infrastructre') {
-            agent 
+          
             steps {
-                git url: 'git clone https://github.com/tejachennuru1/saleor-dashboard.git'
+                
                 sh 'terraform init && terraform apply -auto-approve'
             }
         }
