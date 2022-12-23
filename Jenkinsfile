@@ -1,25 +1,37 @@
+jenkin to terraform calling using below script:-
+
+
+
 pipeline {
     agent any
-
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages {
         stage('vcs') {
+            agent any
             steps {
-                git branch:'main',
-                  url:'https://github.com/tejachennuru1/saleor-dashboard.git'
+                git branch: 'dev', url: 'https://github.com/WorkshopsByKhaja/saleor-dashboard.git'
             }
         }
-
-        stage('build') {
+        stage('docker image build') {
+            agent any
             steps {
-                sh 'docker image build -t tejachennuru1/saleor-dashboard:Dev .'
+                sh 'docker image build -t shaikkhajaibrahim/saleor-dashboar:DEV .'
             }
         }
-                stage('push image to registry') {
-                    steps {
-                        sh 'docker image tag  tejachennuru1/saleor-dashboard:Dev tejaaws/saleor-dashboard:Dev'
-                        sh 'docker image push tejaaws/saleor-dashboard:Dev'
-                        sh 'docker container run -d -P tejaaws/saleor-dashboard:Dev '
-                    }
-                }
+        stage('push image to registry') {
+            agent { label 'build' }
+            steps {
+                sh 'docker image push shaikkhajaibrahim/saleor-dashboar:DEV'
+            }
+        }
+        stage('create terraform infrastructre') {
+            agent { label 'terraform' }
+            steps {
+                git url: 'git clone https://github.com/hashicorp/learn-terraform-provision-eks-cluster'
+                sh 'terraform init && terraform apply -auto-approve'
+            }
+        }
     }
 }
